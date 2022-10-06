@@ -22,7 +22,6 @@ public abstract class Shape {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         ArrayList<Shape> shapes = new ArrayList<Shape>();
         boolean quit = false;
@@ -47,15 +46,15 @@ public abstract class Shape {
                 case 3:
                     name = "cylinder";
                     Cylinder cylinder = new Cylinder(inputDimension(name, "radius"),
-                            inputDimension(name, "height"));
+                                                     inputDimension(name, "height"));
                     shapes.add(cylinder);
                     printAttributes(cylinder);
                     break;
                 case 4:
                     name = "cuboid";
                     Cuboid cuboid = new Cuboid(inputDimension(name,"length"),
-                            inputDimension(name, "width"),
-                            inputDimension(name, "height"));
+                                               inputDimension(name, "width"),
+                                               inputDimension(name, "height"));
                     shapes.add(cuboid);
                     printAttributes(cuboid);
                     break;
@@ -64,14 +63,18 @@ public abstract class Shape {
             }
         } while (!quit);
 
-
-        // Instantiate an object of each class and add to the shapes array list
-
-
-        // Iterate over each shape in the array list
-        for (Shape shape : shapes)
-        {// Print out the shape attributes
-            printAttributes(shape);
+        if (shapes.size() > 0) //Array could be empty
+        {
+            int largestAreaIndex = 0;
+            for (int i = 0; i < shapes.size(); i++)
+            {
+                if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area())
+                {
+                    largestAreaIndex = i;
+                }
+            }
+            System.out.println("Here is the shape with the largest area: ");
+            printAttributes(shapes.get(largestAreaIndex));
         }
     }
 
@@ -128,7 +131,7 @@ public abstract class Shape {
 
     static void printAttributes(Shape shape)
     {
-        System.out.println("-------------------------------------------");
+        System.out.println("----------SHAPE DETAILS----------");
         System.out.println("Name: "+shape.Name());
         if (shape instanceof Polygon)
         {//Printout the Polygon attributes
@@ -155,5 +158,6 @@ public abstract class Shape {
             }
         }
         System.out.println("Area: " + shape.Area());
+        System.out.println();
     }
 }
