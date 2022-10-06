@@ -28,7 +28,6 @@ public abstract class Shape {
         String name; //Name of the shape. Used for printing purposes.
         do
         {
-
             switch (inputShapeChoice())
             {
                 case 1:
