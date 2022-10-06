@@ -25,9 +25,10 @@ public abstract class Shape {
 
         ArrayList<Shape> shapes = new ArrayList<Shape>();
         boolean quit = false;
+        String name; //Name of the shape. Used for printing purposes.
         do
         {
-            String name;
+
             switch (inputShapeChoice())
             {
                 case 1:
@@ -68,7 +69,7 @@ public abstract class Shape {
             int largestAreaIndex = 0;
             for (int i = 0; i < shapes.size(); i++)
             {
-                if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area())
+                if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area()) //Could be made more efficient
                 {
                     largestAreaIndex = i;
                 }
@@ -134,30 +135,30 @@ public abstract class Shape {
         System.out.println("----------SHAPE DETAILS----------");
         System.out.println("Name: "+shape.Name());
         if (shape instanceof Polygon)
-        {//Printout the Polygon attributes
+        {//Print out the Polygon attributes
 
             if (shape instanceof Rectangle)
             {// Print out the Rectangle attributes
                 System.out.println("Length: " + ((Rectangle)shape).Length());
                 System.out.println("Width: " + ((Rectangle)shape).Width());
-            }
-            if (shape instanceof Cuboid)
-            {
-                System.out.println("Height: " + ((Cuboid)shape).Height());
-                System.out.println("Volume: " + ((Cuboid)shape).Volume());
+                if (shape instanceof Cuboid)
+                {//Print out the Cuboid attributes.
+                    System.out.println("Height: " + ((Cuboid)shape).Height());
+                    System.out.println("Volume: " + ((Cuboid)shape).Volume());
+                }
             }
         }
         else if (shape instanceof Circle)
-        {
+        {//Print out the Circle attributes.
             System.out.println("Radius: "+((Circle)shape).Radius());
             if (shape instanceof Cylinder)
-            {
+            {//Print out the Cylinder attributes.
                 System.out.println("Height: "+((Cylinder)shape).Height());
                 System.out.println("Volume: "+((Cylinder)shape).Volume());
 
             }
         }
-        System.out.println("Area: " + shape.Area());
+        System.out.println("Area: " + shape.Area()); //All shapes have an area, so printed last.
         System.out.println();
     }
 }
