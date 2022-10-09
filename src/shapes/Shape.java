@@ -92,7 +92,8 @@ public abstract class Shape {
             if (shapeChoice == -1 || (shapeChoice >= 1 && shapeChoice <= 4))
             {
                 return shapeChoice;
-            } else
+            }
+            else
             {
                 System.out.println("Enter a choice between 1 and 4! (-1 to quit)");
                 return inputShapeChoice();
