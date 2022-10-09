@@ -15,6 +15,7 @@ import java.util.Scanner;
  *
  * @author dw
  */
+@SuppressWarnings("ConstantConditions")
 public abstract class Shape {
     public abstract double Area();
     public abstract String Name();
@@ -24,6 +25,12 @@ public abstract class Shape {
     public static void main(String[] args) {
 
         ArrayList<Shape> shapes = new ArrayList<>();
+        shapes = addShapes(shapes);
+        printLargestArea(shapes);
+    }
+
+    static ArrayList<Shape> addShapes(ArrayList<Shape> shapes)
+    {
         boolean quit = false;
         String name; //Name of the shape. Used for printing purposes.
         do
@@ -62,14 +69,18 @@ public abstract class Shape {
                     quit = true;
             }
         } while (!quit);
+        return shapes;
+    }
 
+    static void printLargestArea(ArrayList<Shape> shapes)
+    {
         if (shapes.size() > 0) //Array could be empty
         {
             int largestAreaIndex = 0;
             for (int i = 0; i < shapes.size(); i++)
             {
                 if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area())
-                { //If shape at current index has largest area, the index becomes the largest area index
+                { //If the shape at the current index has the largest area, the largest area index becomes the current index
                     largestAreaIndex = i;
                 }
             }
