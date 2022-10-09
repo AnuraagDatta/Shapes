@@ -23,13 +23,13 @@ public abstract class Shape {
      */
     public static void main(String[] args) {
 
-        ArrayList<Shape> shapes = new ArrayList<Shape>();
+        ArrayList<Shape> shapes = new ArrayList<>();
         boolean quit = false;
         String name; //Name of the shape. Used for printing purposes.
         do
         {
             switch (inputShapeChoice())
-            {
+            { //Instantiate object of chosen shape
                 case 1:
                     name = "rectangle";
                     Rectangle rectangle = new Rectangle(inputDimension(name, "length"),
@@ -68,8 +68,8 @@ public abstract class Shape {
             int largestAreaIndex = 0;
             for (int i = 0; i < shapes.size(); i++)
             {
-                if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area()) //Could be made more efficient
-                {
+                if (shapes.get(i).Area() > shapes.get(largestAreaIndex).Area())
+                { //If shape at current index has largest area, the index becomes the largest area index
                     largestAreaIndex = i;
                 }
             }
@@ -141,23 +141,27 @@ public abstract class Shape {
                 System.out.println("Length: " + ((Rectangle)shape).Length());
                 System.out.println("Width: " + ((Rectangle)shape).Width());
                 if (shape instanceof Cuboid)
-                {//Print out the Cuboid attributes.
+                {//Print out the Cuboid attributes
                     System.out.println("Height: " + ((Cuboid)shape).Height());
                     System.out.println("Volume: " + ((Cuboid)shape).Volume());
+                    System.out.println("Number of faces: "+((Cuboid) shape).Sides());
+                }
+                else
+                {//If it is a cuboid, it has a number of faces. Otherwise, it has a number of sides.
+                    System.out.println("Number of sides: "+((Rectangle) shape).Sides());
                 }
             }
         }
         else if (shape instanceof Circle)
-        {//Print out the Circle attributes.
+        {//Print out the Circle attributes
             System.out.println("Radius: "+((Circle)shape).Radius());
             if (shape instanceof Cylinder)
-            {//Print out the Cylinder attributes.
+            {//Print out the Cylinder attributes
                 System.out.println("Height: "+((Cylinder)shape).Height());
                 System.out.println("Volume: "+((Cylinder)shape).Volume());
-
             }
         }
-        System.out.println("Area: " + shape.Area()); //All shapes have an area, so printed last.
+        System.out.println("Area: " + shape.Area()); //All shapes have an area
         System.out.println();
     }
 }

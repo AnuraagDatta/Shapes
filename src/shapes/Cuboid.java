@@ -31,4 +31,9 @@ public class Cuboid extends Rectangle
     {
         return "Cuboid";
     }
+
+    public int Sides()
+    {
+        return 6;
+    }
 }

@@ -12,5 +12,6 @@ package shapes;
 public abstract class Polygon extends Shape {
     @Override
     public abstract double Area();
+
     public abstract int Sides();
 }
